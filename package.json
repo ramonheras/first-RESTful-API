@@ -1,0 +1,17 @@
+{
+  "name": "first-restful-api",
+  "version": "1.0.0",
+  "description": "simple toDo app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "author": "Ramon Heras",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
