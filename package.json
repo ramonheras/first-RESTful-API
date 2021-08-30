@@ -2,10 +2,11 @@
   "name": "first-restful-api",
   "version": "1.0.0",
   "description": "simple toDo app",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
-    "lint": "./node_modules/.bin/eslint src/index.js"
+    "start": "babel-node src/app.js",
+    "dev": "nodemon --exec babel-node src/app.js",
+    "lint": "./node_modules/.bin/eslint src/app.js"
   },
   "author": "Ramon Heras",
   "license": "MIT",
@@ -19,6 +20,7 @@
     "nodemon": "^2.0.12"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
   }
 }
