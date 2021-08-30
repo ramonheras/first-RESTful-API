@@ -1,18 +1,16 @@
 import express from 'express';
 import morgan from 'morgan';
 import router from './routes/index';
+import 'dotenv-defaults/config';
 
 const app = express();
-
-// Settings
-app.set('port', process.env.PORT || 7777); // todo: avoid globals
 
 // Middleware
 app.use('/', router);
 app.use(morgan('dev'));
 
 // Listen
-app.listen(app.get('port'), () => console.log(`Listening on port ${app.get('port')}`));
+app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));
 
 // Exports
 module.exports = app;
