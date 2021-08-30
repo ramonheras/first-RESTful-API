@@ -1,12 +1,13 @@
 {
   "name": "first-restful-api",
   "version": "1.0.0",
-  "description": "simple toDo app",
+  "description": "simple to-do app backend",
   "main": "app.js",
   "scripts": {
     "start": "babel-node src/app.js",
     "dev": "nodemon --exec babel-node src/app.js",
-    "lint": "./node_modules/.bin/eslint src/app.js"
+    "lint": "./node_modules/.bin/eslint src/app.js",
+    "swagger-autogen": "babel-node swagger.js"
   },
   "author": "Ramon Heras",
   "license": "MIT",
@@ -21,6 +22,8 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "swagger-autogen": "^2.11.2",
+    "swagger-ui-express": "^4.1.6"
   }
 }
