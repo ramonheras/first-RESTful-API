@@ -6,6 +6,7 @@ import 'dotenv-defaults/config';
 const app = express();
 
 // Middleware
+app.use(express.json());
 app.use('/', router);
 app.use(morgan('dev'));
 
