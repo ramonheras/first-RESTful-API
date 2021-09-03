@@ -1,31 +1,43 @@
 import express from 'express';
+import validateTask from './schema';
 
 const tasksRoute = express.Router();
 
 /* ----- TEMP ------ */
 let data = [];
 
-const IsValid = (db, id) => (id < db.length && db[id] !== undefined);
+const isValidID = (db, id) => (id < db.length && db[id] !== undefined);
 
 /* ----------------- */
 
 // POST method route
-tasksRoute.post('/', (req, res) => {
+tasksRoute.post('/', async (req, res) => {
     /*  #swagger.tags = ['Tasks']
         #swagger.description = 'Endpoint to insert a new task'
 
-        #swagger.parameters['obj'] = {
+        #swagger.parameters['Task'] = {
             in: 'body',
             description: 'Task JSON.',
             required: true,
+            schema: {
+                id: 12,
+                data: {
+                    $title: "Example title, it must 1~30 chars long",
+                    body: " This is a body example. And it must be 0~500 characters long. "
+                }
+            }
         }
 
         #swagger.responses[200] = { description: 'Inserted successfully' }
     */
 
-    // Add validation logic
-    data.push(req.body.data);
-    res.status(200).send(`{"id": "${data.length-1}"}`);
+    try {
+        const taskData = await validateTask(req.body);
+        data.push(taskData);
+        res.status(200).send(`{"id": "${data.length - 1}"}`);
+    } catch (err) {
+        res.status(400).send(err);
+    }
 });
 
 // GET method route
@@ -38,7 +50,10 @@ tasksRoute.get('/', (req, res) => {
             schema: [
                 {
                     id: 12,
-                    data: "any"
+                    data: {
+                        $title: "Title 1 ",
+                        body: ""
+                    }
                 }
             ]
         }
@@ -69,13 +84,17 @@ tasksRoute.get('/:id', (req, res) => {
         #swagger.responses[200] = {
             description: 'Successful GET',
             schema: {
-                $data: "any"
+                id: 12,
+                data: {
+                    $title: "Title 1",
+                    body: ""
+                }
             }
         }
         #swagger.responses[404] = { description: 'Task not found' }
     */
 
-    if (IsValid(data, req.params.id)) {
+    if (isValidID(data, req.params.id)) {
         res.status(200).send(`{"Data": "${data[req.params.id]}"}`);
     } else {
         res.status(404).send('Resource not found');
@@ -83,7 +102,7 @@ tasksRoute.get('/:id', (req, res) => {
 });
 
 // PUT method route
-tasksRoute.put('/:id', (req, res) => {
+tasksRoute.put('/:id', async (req, res) => {
     /*  #swagger.tags = ['Tasks']
         #swagger.description = 'Endpoint to update the task with id equal to {id}'
 
@@ -93,20 +112,31 @@ tasksRoute.put('/:id', (req, res) => {
             required: true,
             type: 'integer'
         }
-        #swagger.parameters['obj'] = {
+        #swagger.parameters['Task'] = {
             in: 'body',
             description: 'Task JSON.',
             required: true,
+            schema: {
+                id: 12,
+                data: {
+                    $title: "Example title, it must 1~30 chars long",
+                    body: " This is a body example. And it must be 0~500 characters long. "
+                }
+            }
         }
 
         #swagger.responses[204] = { description: 'Task edited successfully' }
         #swagger.responses[404] = { description: 'Task not found' }
     */
 
-    if (IsValid(data, req.params.id)) {
-        // Add validation logic
-        data[req.params.id] = req.body.data;
-        res.status(204).send();
+    if (isValidID(data, req.params.id)) {
+        try {
+            const taskData = await validateTask(req.body);
+            data[req.params.id] = taskData;
+            res.status(204).send();
+        } catch (err) {
+            res.status(400).send(err);
+        }
     } else {
         res.status(404).send('Resource not found');
     }
@@ -128,7 +158,7 @@ tasksRoute.delete('/:id', (req, res) => {
         #swagger.responses[404] = { description: 'Task not found' }
     */
 
-    if (IsValid(data, req.params.id)) {
+    if (isValidID(data, req.params.id)) {
         data[req.params.id] = undefined;
         res.status(204).send();
     } else {
