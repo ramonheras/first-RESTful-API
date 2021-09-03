@@ -1,0 +1,28 @@
+
+name: On Commit Basic Workflow  
+
+on: 
+  - push
+  - workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # Set Env variables here (use GitHub secrets for sensitive info)
+    # Variables set here are not overriden by .env and .env.defaults
+    # env:
+      # PORT: 3000
+
+    steps:
+      # Setup #
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      # Tests #
+      - run: npm install 
+      - run: npm run lint
+      #- run: npm run test 
+      # Deployment # 
+      # ...
