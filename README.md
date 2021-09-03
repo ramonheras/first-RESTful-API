@@ -1,7 +1,7 @@
 # First REST API
 
 ### The aim 
-This repository contains a simple base project to get a taste of APIs design in Node.js. The focus is on putting together a Node.js project rather than on the language JS itself. In the bulleted list below, I've enumerated the key points observed under this project:
+This repository :octocat: contains a simple base project to get a taste of APIs design in Node.js. The focus is on putting together a Node.js project rather than on the language JS itself. In the bulleted list below, I've enumerated the key points observed under this project:
 
 | Object                                            | Status            |
 | --                                                | --                |
@@ -11,6 +11,10 @@ This repository contains a simple base project to get a taste of APIs design in 
 | 4. Documentation methodologies                    | to do             |
 | 5. Automated Building                             | in progress       | 
 | 6. DevOps (automated testing and deployment)      | to do             |
+
+:beginner: The project is still under development. You can check out the project board  [here](https://sharing.clickup.com/b/h/6-128548700-2/16ab57aa76c49cc) :sparkles: and visiting the API route `/project-board`
+
+[![ClickUp Project Board](docs/images/project-board.png)](https://sharing.clickup.com/b/h/6-128548700-2/16ab57aa76c49cc)
 
 ### The project
 
@@ -41,7 +45,7 @@ $ npm -v
 
 **3. Execute `swagger-autogen` script**
 
-***Warning:*** *Make sure the port 7777 is available (todo: use env variables)*
+**:warning: Warning:** *Make sure the port 7777 is available (todo: use env variables)*
 
 The first command installs all dependencies. The second command runs the autogen script to generate the "swagger_output.json" file and start the app. Once this file is generated the app can be run as usual with the `npm start` command or your preferred script.
 
@@ -56,4 +60,4 @@ Move to your preferred browser, and type the path `localhost:7777/doc`. The swag
 
 ----
 
-**If something went wrong or you have any suggestions, open an issue ;) and I'll try to get to it ASAP.**
+**If something went wrong or you have any suggestions, open an issue and I'll try to get to it ASAP. :blush:**
