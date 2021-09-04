@@ -23,6 +23,7 @@ jobs:
       # Tests #
       - run: npm install 
       - run: npm run lint
+      - run: npm run swagger-autogen
       - run: npm run test 
       # Deployment # 
       # ...
