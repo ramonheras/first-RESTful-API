@@ -11,8 +11,8 @@ jobs:
 
     # Set Env variables here (use GitHub secrets for sensitive info)
     # Variables set here are not overriden by .env and .env.defaults
-    # env:
-      # PORT: 3000
+    env:
+      CODECOV_TOKEN: secrets.CODECOV_TOKEN
 
     steps:
       # Setup #
@@ -25,5 +25,6 @@ jobs:
       - run: npm run lint
       - run: npm run swagger-autogen
       - run: npm run test 
+      - run: npm run report-coverage
       # Deployment # 
       # ...

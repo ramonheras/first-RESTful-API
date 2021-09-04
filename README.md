@@ -1,5 +1,7 @@
 # First REST API
 
+[![codecov](https://codecov.io/gh/ramonheras/first-RESTful-API/branch/develop/graph/badge.svg?token=HVKLXJGCZO)](https://codecov.io/gh/ramonheras/first-RESTful-API)
+
 ### The aim 
 This repository :octocat: contains a simple base project to get a taste of APIs design in Node.js. The focus is on putting together a Node.js project rather than on the language JS itself. In the bulleted list below, I've enumerated the key points observed under this project:
 

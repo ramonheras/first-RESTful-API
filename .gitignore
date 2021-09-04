@@ -2,3 +2,6 @@ node_modules
 package-lock.json
 swagger_output.json
 .env
+.nyc_output
+coverage
+*.lcov

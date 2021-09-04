@@ -8,7 +8,8 @@
     "dev": "nodemon --exec babel-node src/app.js",
     "lint": "./node_modules/.bin/eslint src/app.js",
     "swagger-autogen": "babel-node swagger.js",
-    "test": "mocha --require @babel/register --exit"
+    "test": "nyc mocha --require @babel/register --exit",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "author": "Ramon Heras",
   "license": "MIT",
@@ -18,11 +19,13 @@
     "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "chai": "^4.3.4",
+    "codecov": "^3.8.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
     "mocha": "^9.1.1",
     "nodemon": "^2.0.12",
+    "nyc": "^15.1.0",
     "supertest": "^6.1.6"
   },
   "dependencies": {
