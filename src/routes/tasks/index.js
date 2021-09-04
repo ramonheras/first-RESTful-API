@@ -11,7 +11,7 @@ const isValidID = (db, id) => (id < db.length && db[id] !== undefined);
 /* ----------------- */
 
 // POST method route
-tasksRoute.post('/', async (req, res) => {
+tasksRoute.post('/', (req, res) => {
     /*  #swagger.tags = ['Tasks']
         #swagger.description = 'Endpoint to insert a new task'
 
@@ -20,23 +20,20 @@ tasksRoute.post('/', async (req, res) => {
             description: 'Task JSON.',
             required: true,
             schema: {
-                id: 12,
-                data: {
-                    $title: "Example title, it must 1~30 chars long",
-                    body: " This is a body example. And it must be 0~500 characters long. "
-                }
+                $title: "Example title 1~30 chars long",
+                body: " This is a body example. And it must be 0~500 characters long. "
             }
         }
 
         #swagger.responses[200] = { description: 'Inserted successfully' }
     */
+    const validation = validateTask(req.body);
 
-    try {
-        const taskData = await validateTask(req.body);
-        data.push(taskData);
-        res.status(200).send(`{"id": "${data.length - 1}"}`);
-    } catch (err) {
-        res.status(400).send(err);
+    if (!validation.error) {
+        data.push(validation.value);
+        res.status(200).json({ id: data.length - 1 });
+    } else {
+        res.status(400).json(validation.error.message);
     }
 });
 
@@ -60,13 +57,16 @@ tasksRoute.get('/', (req, res) => {
     */
 
     // Add validation logic
-    const formatedArray = data.reduce((result, elm, idx) => {
-        if (elm !== undefined) {
-            result.push(JSON.parse(`{"id": ${idx},\n"data": "${elm}"}`));
+    const formatedArray = data.reduce((result, task, idx) => {
+        if (task !== undefined) {
+            result.push({
+                id: idx,
+                data: task,
+            });
         }
         return result;
     }, []);
-    res.status(200).send(formatedArray);
+    res.status(200).json(formatedArray);
 });
 
 // GET method route
@@ -84,20 +84,17 @@ tasksRoute.get('/:id', (req, res) => {
         #swagger.responses[200] = {
             description: 'Successful GET',
             schema: {
-                id: 12,
-                data: {
-                    $title: "Title 1",
-                    body: ""
-                }
+                $title: "Title 1",
+                body: ""
             }
         }
         #swagger.responses[404] = { description: 'Task not found' }
     */
 
     if (isValidID(data, req.params.id)) {
-        res.status(200).send(`{"Data": "${data[req.params.id]}"}`);
+        res.status(200).json(data[req.params.id]);
     } else {
-        res.status(404).send('Resource not found');
+        res.status(404).json('Resource not found');
     }
 });
 
@@ -117,11 +114,8 @@ tasksRoute.put('/:id', async (req, res) => {
             description: 'Task JSON.',
             required: true,
             schema: {
-                id: 12,
-                data: {
-                    $title: "Example title, it must 1~30 chars long",
-                    body: " This is a body example. And it must be 0~500 characters long. "
-                }
+                $title: "Example title 1~30 chars long",
+                body: " This is a body example. And it must be 0~500 characters long. "
             }
         }
 
@@ -130,15 +124,16 @@ tasksRoute.put('/:id', async (req, res) => {
     */
 
     if (isValidID(data, req.params.id)) {
-        try {
-            const taskData = await validateTask(req.body);
-            data[req.params.id] = taskData;
+        const validation = validateTask(req.body);
+
+        if (!validation.error) {
+            data[req.params.id] = JSON.parse(validation.value);
             res.status(204).send();
-        } catch (err) {
-            res.status(400).send(err);
+        } else {
+            res.status(400).send(validation.error.message);
         }
     } else {
-        res.status(404).send('Resource not found');
+        res.status(404).json('Resource not found');
     }
 });
 
@@ -162,7 +157,7 @@ tasksRoute.delete('/:id', (req, res) => {
         data[req.params.id] = undefined;
         res.status(204).send();
     } else {
-        res.status(404).send('Resource not found');
+        res.status(404).json('Resource not found');
     }
 });
 

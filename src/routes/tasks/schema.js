@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 // This file contais all the validation logic for the route /tasks and /tasks/:id
 
-export default async function validateTask(task) {
+export default function validateTask(task) {
     /*  #swagger.parameters['Task'] = {
             in: 'body',
             description: 'Task JSON.',
@@ -27,5 +27,5 @@ export default async function validateTask(task) {
             .max(500),
     });
 
-    return schema.validateAsync(task);
+    return schema.validate(task);
 }
