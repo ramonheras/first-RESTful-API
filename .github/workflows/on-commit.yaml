@@ -12,7 +12,7 @@ jobs:
     # Set Env variables here (use GitHub secrets for sensitive info)
     # Variables set here are not overriden by .env and .env.defaults
     env:
-      CODECOV_TOKEN: secrets.CODECOV_TOKEN
+      CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
 
     steps:
       # Setup #
