@@ -5,16 +5,16 @@
 ### The aim 
 This repository :octocat: contains a simple base project to get a taste of APIs design in Node.js. The focus is on putting together a Node.js project rather than on the language JS itself. In the bulleted list below, I've enumerated the key points observed under this project:
 
-| Object                                            | Status            |
-| --                                                | --                |
-| 1. Language scope                                 | in progress       |
-| 2. Basic project/folder structure                 | in progress       |
-| 3. Testing frameworks                             | to do             |
-| 4. Documentation methodologies                    | to do             |
-| 5. Automated Building                             | in progress       | 
-| 6. DevOps (automated testing and deployment)      | to do             |
+| Object                                            | Status   |
+| --                                                | --       |
+| 1. Language scope                                 | OK       |
+| 2. Basic project/folder structure                 | OK       |
+| 3. Testing frameworks                             | Ok       |
+| 4. Documentation methodologies                    | OK       |
+| 5. Automated Building                             | OK       | 
+| 6. DevOps (automated testing and deployment)      | Almost   |
 
-:beginner: The project is still under development. You can check out the project board  [here](https://sharing.clickup.com/b/h/6-128548700-2/16ab57aa76c49cc) :sparkles: and visiting the API route `/project-board`
+:beginner: The project is still under development. You can check out the project board [here](https://sharing.clickup.com/b/h/6-128548700-2/16ab57aa76c49cc) :sparkles:, visiting the API route `/project-board` or clicking on the image below.
 
 [![ClickUp Project Board](docs/images/project-board.png)](https://sharing.clickup.com/b/h/6-128548700-2/16ab57aa76c49cc)
 
@@ -47,7 +47,7 @@ $ npm -v
 
 **3. Execute `swagger-autogen` script**
 
-**:warning: Warning:** *Make sure the port 7777 is available (todo: use env variables)*
+**:warning: Warning:** *Make sure the port 7777 is available, or PORT value this env variable is defined in your machine*
 
 The first command installs all dependencies. The second command runs the autogen script to generate the "swagger_output.json" file and start the app. Once this file is generated the app can be run as usual with the `npm start` command or your preferred script.
 
@@ -59,6 +59,7 @@ $ npm run swagger-autogen
 **4. Open the API documentation**
 
 Move to your preferred browser, and type the path `localhost:7777/doc`. The swagger documentation must show up.
+:pencil: The port might be different in your machine if you already set the env variable `'PORT`. Also note that env.defaults does not override your local env vars.
 
 ----
 
