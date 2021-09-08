@@ -3,7 +3,7 @@
 [![codecov](https://codecov.io/gh/ramonheras/first-RESTful-API/branch/develop/graph/badge.svg?token=HVKLXJGCZO)](https://codecov.io/gh/ramonheras/first-RESTful-API)
 
 ### The aim 
-This repository :octocat: contains a simple base project to get a taste of APIs design in Node.js. The focus is on putting together a Node.js project rather than on the language JS itself. In the bulleted list below, I've enumerated the key points observed under this project:
+This repository :octocat: contains a simple project to get a taste of API design in Node.js. The focus is on putting together a basic Node.js project rather than on the language JS itself. In the list below, I've enumerated the key points observed under this project:
 
 | Object                                            | Status   |
 | --                                                | --       |
@@ -47,19 +47,21 @@ $ npm -v
 
 **3. Execute `swagger-autogen` script**
 
-**:warning: Warning:** *Make sure the port 7777 is available, or PORT value this env variable is defined in your machine*
+**:warning: Warning:** *Make sure the port 7777 is available or PORT value, if this env variable is defined in your machine*
 
-The first command installs all dependencies. The second command runs the autogen script to generate the "swagger_output.json" file and start the app. Once this file is generated the app can be run as usual with the `npm start` command or your preferred script.
+The first command installs all dependencies, and the second one generates the "swagger_output.json" file, needed by swagger-ui. Once this file is generated the app can be run as usual with the `npm start` command or your preferred script.
 
 ```bash
 $ npm install
 $ npm run swagger-autogen
+$ npm start # Or 'run dev' to use nodemon instead
 ```
 
 **4. Open the API documentation**
 
 Move to your preferred browser, and type the path `localhost:7777/doc`. The swagger documentation must show up.
-:pencil: The port might be different in your machine if you already set the env variable `'PORT`. Also note that env.defaults does not override your local env vars.
+
+:pencil: The port might be different in your machine if `'PORT` env variable is already set. Also note that env.defaults does not override your local env vars.
 
 ----
 
